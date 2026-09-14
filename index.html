@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1b1916">
+  <title>Calder Bay</title>
+  <link rel="preload" as="image" href="ui/assets/arrival-ship.png">
+  <link rel="preload" as="image" href="ui/assets/arrival.png">
+  <link rel="preload" as="audio" href="ui/assets/audio/arrival/crossing.mp3">
+  <link rel="preload" as="audio" href="ui/assets/audio/arrival/harbor.mp3">
+  <link rel="preload" as="audio" href="ui/assets/audio/arrival/landing.mp3">
+  <link rel="preload" as="audio" href="ui/assets/audio/arrival/city.mp3">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="ui/styles.css?v=20260915-2">
+  <link rel="stylesheet" href="ui/district-preview.css">
+</head>
+<body>
+  <main id="start-menu" aria-labelledby="game-title">
+    <div class="menu-content">
+      <p class="menu-era"><span></span> America, 1920 <span></span></p>
+      <h1 id="game-title">Calder Bay</h1>
+      <p class="menu-tagline">Every fortune has a beginning.</p>
+      <nav class="menu-actions" aria-label="Main menu">
+        <button id="new-game" type="button"><span>New Game</span><span aria-hidden="true">→</span></button>
+        <button id="load-game" type="button" disabled><span>Load Game</span><span aria-hidden="true">→</span></button>
+        <button id="settings" type="button"><span>Settings</span><span aria-hidden="true">→</span></button>
+      </nav>
+    </div>
+    <p class="menu-footer">A city of opportunity. A life of consequence.</p>
+  </main>
+  <section id="arrival-intro" aria-label="Arrival in America" hidden>
+    <div class="arrival-visual" aria-hidden="true"><div class="arrival-picture"></div><div class="arrival-shade"></div></div>
+    <header class="arrival-header"><span>Calder Bay <i>·</i> Prologue</span><button id="arrival-skip" type="button">Skip intro ↗</button></header>
+    <div class="arrival-caption" aria-live="polite" aria-atomic="true">
+      <p id="arrival-label"></p>
+      <h1 id="arrival-title"></h1>
+      <p id="arrival-text"></p>
+    </div>
+    <footer class="arrival-controls">
+      <div><span id="arrival-count"></span><button id="arrival-pause" type="button">Pause</button><button id="arrival-sound" type="button">Sound on</button></div>
+      <button id="arrival-next" type="button">Continue →</button>
+    </footer>
+  </section>
+  <main id="game" aria-label="City overview" tabindex="-1" hidden>
+    <div id="map-stage"></div>
+    <time id="clock" aria-label="Game date and time"></time>
+    <button id="save-game" type="button">Save Game</button>
+    <button id="game-settings" type="button">Settings</button>
+    <aside id="district-card" role="tooltip" hidden>
+      <h1 id="district-name"></h1>
+      <p id="district-description"></p>
+      <div id="district-location" hidden>◆ You are here</div>
+    </aside>
+    <span class="sr-only" id="announcement" aria-live="polite"></span>
+  </main>
+  <section id="save-panel" class="save-panel" role="dialog" aria-modal="true" aria-labelledby="save-panel-title" hidden>
+    <div class="save-sheet">
+      <header>
+        <div><p class="settings-kicker">Calder Bay</p><h2 id="save-panel-title">Saved Games</h2></div>
+        <button id="close-save-panel" class="save-close" type="button" aria-label="Close saved games">×</button>
+      </header>
+      <form id="new-save-form" class="new-save-form">
+        <label for="save-name">Save this game as</label>
+        <div><input id="save-name" name="save-name" maxlength="80" autocomplete="off" required><button type="submit">Create Save</button></div>
+      </form>
+      <p id="save-panel-empty" class="save-empty">There are no saved games in this browser yet.</p>
+      <div id="save-list" class="save-list" aria-live="polite"></div>
+      <footer>
+        <input id="import-save-file" type="file" accept="application/json,.json" class="sr-only">
+        <button id="import-save" type="button">Import Save…</button>
+        <p id="save-panel-message" role="status"></p>
+      </footer>
+    </div>
+  </section>
+  <section id="settings-panel" class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <div class="settings-sheet">
+      <p class="settings-kicker">Calder Bay</p>
+      <h2 id="settings-title">Settings</h2>
+      <label class="setting-toggle" for="music-enabled">
+        <span><strong>Music</strong><small>Play background music</small></span>
+        <input id="music-enabled" type="checkbox">
+      </label>
+      <label class="setting-volume" for="music-volume">
+        <span><strong>Music volume</strong><output id="music-volume-value" for="music-volume">35%</output></span>
+        <input id="music-volume" type="range" min="0" max="100" step="1" value="35">
+      </label>
+      <button id="close-settings" type="button">Done</button>
+    </div>
+  </section>
+  <audio id="background-music" preload="metadata"></audio>
+  <script type="module" src="ui/app.js?v=20260915-2"></script>
+</body>
+</html>

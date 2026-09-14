@@ -1,0 +1,12 @@
+{
+  "name": "calder-bay",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "playthrough": "node scenarios/run.js",
+    "test": "node --test test/*.test.js test/*/*/*.test.js",
+    "check": "find src scenarios test ui scripts -name '*.js' -exec node --check {} \\;",
+    "dev": "node scripts/dev-server.js"
+  }
+}
